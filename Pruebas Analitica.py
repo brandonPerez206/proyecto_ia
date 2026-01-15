@@ -24,7 +24,7 @@ print("Conectando a la cámara...")
 cap = cv2.VideoCapture(RTSP_URL, cv2.CAP_FFMPEG)
 
 if not cap.isOpened():
-    print("❌ No se pudo conectar a la cámara.")
+    print("No se pudo conectar a la cámara.")
     exit()
 
 # ===============================
@@ -44,17 +44,17 @@ while True:
     ret, frame = cap.read()
 
     if not ret:
-        print("⚠️ Frame perdido, reintentando conexión...")
+        print("Frame perdido, reintentando conexión...")
         cap.release()
         cap = cv2.VideoCapture(RTSP_URL, cv2.CAP_FFMPEG)
         continue
 
     frame_count += 1
 
-    # 🔴 PASO 1: REDUCIR RESOLUCIÓN (AQUÍ VA)
+    # REDUCIR RESOLUCIÓN
     frame = cv2.resize(frame, (960, 540))
 
-    # 🔴 PASO 2: SALTAR FRAMES (OPCIONAL PERO CLAVE)
+    # SALTAR FRAMES 
     if frame_count % 3 != 0:
         cv2.imshow("CAMARA", frame)
         cv2.waitKey(1)

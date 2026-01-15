@@ -27,10 +27,10 @@ def enviar_alerta(asunto, mensaje, destinatario):
             smtp.login(EMAIL_USER, EMAIL_PASS)
             smtp.send_message(email)
 
-        print("📧 Mensaje enviado correctamente")
+        print("Mensaje enviado correctamente")
 
     except Exception as e:
-        print("❌ Error enviando correo:", e)
+        print("Error enviando correo:", e)
 
 # ---- PRUEBA ----
 if __name__ == "__main__":
