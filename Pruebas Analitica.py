@@ -1,6 +1,14 @@
+import time
+import os
+from datetime import datetime
 import cv2
 from ultralytics import YOLO
 from email_alerts import enviar_alerta
+
+
+CLASES_ALERTA = [1, 3]  # Caja no amarrada, Rollos sin amarrar
+ultimo_evento = 0
+TIEMPO_COOLDOWN = 10  # segundos
 
 # ===============================
 # CONFIGURACIÓN
@@ -40,6 +48,25 @@ cv2.resizeWindow("CAMARA", 1280, 720)
 
 frame_count = 0
 
+def guardar_evidencia(frame, clase_id):
+    os.makedirs("evidencias/imagenes", exist_ok=True)
+
+    nombres = [
+        "caja_abierta",
+        "caja_no_amarrada",
+        "rollos_bien_amarrados",
+        "rollos_sin_amarrar"
+    ]
+
+    nombre_clase = nombres[clase_id]
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+    ruta = f"evidencias/imagenes/{nombre_clase}_{timestamp}.jpg"
+    cv2.imwrite(ruta, frame)
+
+    print(f"📸 Evidencia guardada: {ruta}")
+
+
 while True:
     ret, frame = cap.read()
 
@@ -68,8 +95,14 @@ while True:
     for r in results:
         annotated = r.plot(line_width=2, font_size=0.8)
 
+    for cls in r.boxes.cls:
+        if int(cls) in CLASES_ALERTA:
+            ahora = time.time()
 
-
+            if ahora - ultimo_evento > TIEMPO_COOLDOWN:
+                guardar_evidencia(annotated, int(cls))
+                ultimo_evento = ahora
+                break  # evita guardar varias veces el mismo frame
     # ===============================
     # MOSTRAR
     # ===============================
