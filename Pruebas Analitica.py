@@ -8,7 +8,7 @@ from email_alerts import enviar_alerta
 
 CLASES_ALERTA = [1, 3]  # Caja no amarrada, Rollos sin amarrar
 ultimo_evento = 0
-TIEMPO_COOLDOWN = 10  # segundos
+TIEMPO_COOLDOWN = 60  # segundos
 
 # ===============================
 # CONFIGURACIÓN
@@ -92,6 +92,12 @@ while True:
     # ===============================
 
     results = model(frame, imgsz=768, conf=0.5, stream=True)
+
+    for r in results:
+        for cls in r.boxes.cls:
+            if int(cls) == CLASES_ALERTA:
+                print("🚨 ALERTA: Estiba mal amarrada detectada")
+
     for r in results:
         annotated = r.plot(line_width=2, font_size=0.8)
 
@@ -106,7 +112,8 @@ while True:
     # ===============================
     # MOSTRAR
     # ===============================
-
+    results = model(frame)
+    annotated = results[0].plot()  # SIEMPRE se crea
     cv2.imshow("CAMARA", annotated)
 
     # Salir con Q
