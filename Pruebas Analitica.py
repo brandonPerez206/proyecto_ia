@@ -64,7 +64,7 @@ def guardar_evidencia(frame, clase_id):
     ruta = f"evidencias/imagenes/{nombre_clase}_{timestamp}.jpg"
     cv2.imwrite(ruta, frame)
 
-    print(f"📸 Evidencia guardada: {ruta}")
+    print(f" Evidencia guardada: {ruta}")
 
 
 while True:
@@ -96,7 +96,7 @@ while True:
     for r in results:
         for cls in r.boxes.cls:
             if int(cls) == CLASES_ALERTA:
-                print("🚨 ALERTA: Estiba mal amarrada detectada")
+                print(" ALERTA: Estiba mal amarrada detectada")
 
     for r in results:
         annotated = r.plot(line_width=2, font_size=0.8)
@@ -108,12 +108,13 @@ while True:
             if ahora - ultimo_evento > TIEMPO_COOLDOWN:
                 guardar_evidencia(annotated, int(cls))
                 ultimo_evento = ahora
-                break  # evita guardar varias veces el mismo frame
-    # ===============================
-    # MOSTRAR
-    # ===============================
+                break  
+
+# ===============================
+# MOSTRAR
+# ===============================
     results = model(frame)
-    annotated = results[0].plot()  # SIEMPRE se crea
+    annotated = results[0].plot()  
     cv2.imshow("CAMARA", annotated)
 
     # Salir con Q

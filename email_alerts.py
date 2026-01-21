@@ -37,5 +37,5 @@ if __name__ == "__main__":
     enviar_alerta(
         "Prueba desde email_alerts.py",
         "Esto es una prueba de envío.",
-        EMAIL_USER  # te envías el correo a ti mismo
+        EMAIL_USER  
     )
