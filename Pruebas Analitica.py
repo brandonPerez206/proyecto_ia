@@ -15,7 +15,7 @@ TIEMPO_COOLDOWN = 60  # segundos
 # ===============================
 
 RTSP_URL = "rtsp://admin:Hik_alico20@10.100.30.47:554/Channels/23"
-MODEL_PATH = r"C:\Users\rev_camaras3\runs\detect\train6\weights\best.pt"
+MODEL_PATH = r"C:\Users\rev_camaras3\Documents\Proyecto Analitica\datasets\runs\detect\train\weights\best.pt"
 
 # ===============================
 # CARGAR MODELO YOLO

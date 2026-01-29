@@ -1,6 +1,7 @@
-# Analitica Ascensor  > 2026-01-19 8:22am
+# Analitica Ascensor  > 2026-01-26 2:14pm
 https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese
 
 Provided by a Roboflow user
 License: CC BY 4.0
 
+Deteccion de estibas, cajas, rollos, mal uso de herramientas de trabajo para amarrar y proteger el producto.
