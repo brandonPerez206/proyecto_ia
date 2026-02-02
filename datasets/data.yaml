@@ -8,6 +8,6 @@ names: ['Caja caida', 'Caja no amarrada', 'Rollos sin amarrar', 'rollos caidos']
 roboflow:
   workspace: alico-sa
   project: analitica-ascensor-9aese
-  version: 14
+  version: 15
   license: CC BY 4.0
-  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/14
+  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/15

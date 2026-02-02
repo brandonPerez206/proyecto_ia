@@ -1,8 +1,8 @@
 
-Analitica Ascensor  - v14 2026-01-26 2:14pm
+Analitica Ascensor  - v15 2026-01-30 11:15am
 ==============================
 
-This dataset was exported via roboflow.com on January 26, 2026 at 7:34 PM GMT
+This dataset was exported via roboflow.com on January 30, 2026 at 4:51 PM GMT
 
 Roboflow is an end-to-end computer vision platform that helps you
 * collaborate with your team on computer vision projects
@@ -17,7 +17,7 @@ visit https://github.com/roboflow/notebooks
 
 To find over 100k other datasets and pre-trained models, visit https://universe.roboflow.com
 
-The dataset includes 183 images.
+The dataset includes 188 images.
 Alico-Sas are annotated in YOLOv8 format.
 
 The following pre-processing was applied to each image:
