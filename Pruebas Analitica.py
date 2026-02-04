@@ -40,7 +40,7 @@ if not cap.isOpened():
 # ===============================
 
 cv2.namedWindow("CAMARA", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("CAMARA", 1080, 720)
+cv2.resizeWindow("CAMARA", 1280, 720)
 
 # ===============================
 # LOOP PRINCIPAL
@@ -49,22 +49,20 @@ cv2.resizeWindow("CAMARA", 1080, 720)
 frame_count = 0
 
 def guardar_evidencia(frame, clase_id):
-    os.makedirs("evidencias/imagenes", exist_ok=True)
+    # Carpeta de evidencias
+    carpeta = "evidencias"
+    os.makedirs(carpeta, exist_ok=True)
 
-    nombres = [
-        "caja_abierta",
-        "caja_no_amarrada",
-        "rollos_bien_amarrados",
-        "rollos_sin_amarrar"
-    ]
-
-    nombre_clase = nombres[clase_id]
+    # Fecha y hora
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-    ruta = f"evidencias/imagenes/{nombre_clase}_{timestamp}.jpg"
-    cv2.imwrite(ruta, frame)
+    # Nombre del archivo
+    nombre = f"{carpeta}/evento_clase_{clase_id}_{timestamp}.jpg"
 
-    print(f" Evidencia guardada: {ruta}")
+    # Guardar imagen
+    cv2.imwrite(nombre, frame)
+
+    print(f"📸 Evidencia guardada: {nombre}")
 
 
 while True:
@@ -101,14 +99,14 @@ while True:
     for r in results:
         annotated = r.plot(line_width=2, font_size=0.8)
 
-    for cls in r.boxes.cls:
-        if int(cls) in CLASES_ALERTA:
-            ahora = time.time()
+    for r in results:
+        if r.boxes is not None:
+            for box in r.boxes:
+                cls = int(box.cls[0])
+                conf = float(box.conf[0])
 
-            if ahora - ultimo_evento > TIEMPO_COOLDOWN:
-                guardar_evidencia(annotated, int(cls))
-                ultimo_evento = ahora
-                break  
+            if conf > 0.6:
+                guardar_evidencia(annotated, cls)
 
 # ===============================
 # MOSTRAR

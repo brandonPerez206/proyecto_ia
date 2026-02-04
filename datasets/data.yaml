@@ -2,12 +2,12 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 4
-names: ['Caja caida', 'Caja no amarrada', 'Rollos sin amarrar', 'rollos caidos']
+nc: 5
+names: ['Caja caida', 'Caja no amarrada', 'Rollos sin amarrar', 'persona', 'rollos caidos']
 
 roboflow:
   workspace: alico-sa
   project: analitica-ascensor-9aese
-  version: 15
+  version: 16
   license: CC BY 4.0
-  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/15
+  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/16
