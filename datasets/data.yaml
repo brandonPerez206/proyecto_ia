@@ -2,12 +2,12 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 23
-names: ['Caja caida', 'Caja no amarrada', 'Persona', 'Rollos sin amarrar', 'aeroplane', 'bicycle', 'boat', 'bottle', 'bus', 'car', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'rollos caidos', 'sheep', 'sofa', 'train', 'tvmonitor']
+nc: 5
+names: ['Caja caida', 'Caja no amarrada', 'Rollos sin amarrar', 'person', 'rollos caidos']
 
 roboflow:
   workspace: alico-sa
   project: analitica-ascensor-9aese
-  version: 24
+  version: 25
   license: CC BY 4.0
-  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/24
+  url: https://universe.roboflow.com/alico-sa/analitica-ascensor-9aese/dataset/25
